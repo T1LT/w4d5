@@ -50,8 +50,11 @@ largest_sum = -99999
 temp_arr = []
 list = [2, 3, -6, 7, -6, 7]
 list.each_with_index do |el,i|
-    # current_sum = -99999
+    current_sum = 0
+
     temp_arr << [list[i]]
+    temp_arr << list.drop(list.length - i - 1)
+    temp_arr << list.take(list.length - i - 1)
     temp_arr << list[0..i] unless i == 0
     temp_arr << list[i..-1] unless i == list.length - 1
 end
