@@ -20,42 +20,24 @@
 
 # Phase 2
 
-# def largest_contiguous_subsum(list)
-    
-
-# end
-
-# [5, -7, 3]
-#  i   j
-# largest sum = 
-# current sum = 
-# list = [5, 3, -7]
-# p largest_contiguous_subsum(list) # => 8
-
-# list = [2, 3, -6, 7, -6, 7]
-# p largest_contiguous_subsum(list) # => 8 (from [7, -6, 7])
-
-# list = [-5, -1, -3]
-# p largest_contiguous_subsum(list) # => -1 (from [-1])
-
-
-# [2, 3, -6, 7, -6, 7]
-# [2, 3, -6, 7, -6], [3, -6, 7, -6, 7]
-# [-6, 7, -6, 7]
-# [7, -6, 7]
-# [-6, 7]
-# [7]
-
-largest_sum = -99999
-temp_arr = []
-list = [2, 3, -6, 7, -6, 7]
-list.each_with_index do |el,i|
-    current_sum = 0
-
-    temp_arr << [list[i]]
-    temp_arr << list.drop(list.length - i - 1)
-    temp_arr << list.take(list.length - i - 1)
-    temp_arr << list[0..i] unless i == 0
-    temp_arr << list[i..-1] unless i == list.length - 1
+def largest_contiguous_subsum(list)
+    res = -1.0 / 0
+    temp = 0
+    list.each do |el|
+        temp += el
+        res = [temp, res].max
+        if temp <= 0
+            temp = 0
+        end
+    end
+    res
 end
-p temp_arr
+
+list = [5, 3, -7]
+p largest_contiguous_subsum(list) # => 8
+
+list = [2, 3, -6, 7, -6, 7]
+p largest_contiguous_subsum(list) # => 8 (from [7, -6, 7])
+
+list = [-5, -1, -3]
+p largest_contiguous_subsum(list) # => -1 (from [-1])
